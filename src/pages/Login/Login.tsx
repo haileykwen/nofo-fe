@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../../App";
 import { Button, Layout, PageTitle, TextInput } from "../../components";
 import { UrlRouter } from "../../router";
 import "./Login.css";
@@ -22,6 +23,7 @@ const Login = () => {
     const handleSubmit = (event: any) => {
         event.preventDefault();
         console.table(loginCredentials);
+        notify("success", "Log in successful");
         Navigation(UrlRouter.APP_DASHBOARD, {replace: true});
     };
 
