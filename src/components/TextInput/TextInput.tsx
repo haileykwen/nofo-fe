@@ -1,7 +1,7 @@
 import "./TextInput.css";
 
 interface TextInputProps {
-    type?: string
+    type?: "text" | "password"
     id: string
     name: string
     required?: boolean

@@ -1,13 +1,15 @@
 import { Router } from "./Router";
+import UrlRouter from "./UrlRouter";
 
 import PublicRoute from "./PublicRoute";
-import UrlRouter from "./UrlRouter";
+import PrivateRoute from "./PrivateRoute";
 
 
 
 export {
     Router,
+    UrlRouter,
 
     PublicRoute,
-    UrlRouter,
+    PrivateRoute,
 };

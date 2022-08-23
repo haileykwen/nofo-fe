@@ -6,13 +6,13 @@ import {
 } from "react-router-dom";
 import { Sidebar } from "../components";
 import { APIs, Dashboard, DataSources, Login, MeetUp } from "../pages";
-import { PublicRoute, UrlRouter } from "./";
+import { PublicRoute, UrlRouter, PrivateRoute } from "./";
 
 const Router = () => {
     return (
         <Routes>
             {/* App Routes */}
-            <Route path="/app" element={<PublicRoute />}>
+            <Route path="/app" element={<PrivateRoute />}>
                 <Route path={UrlRouter.APP} element={<App />}>
                     <Route path={UrlRouter.APP_DASHBOARD_RRD} element={<Dashboard />} />
                     <Route path={UrlRouter.APP_DATA_SOURCES_RRD} element={<DataSources />} />

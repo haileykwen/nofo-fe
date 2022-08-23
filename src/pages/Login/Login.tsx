@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_SIGNIN } from "../../apis";
 import { notify } from "../../App";
 import { Button, Layout, PageTitle, TextInput } from "../../components";
 import { UrlRouter } from "../../router";
@@ -22,9 +23,17 @@ const Login = () => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        console.table(loginCredentials);
-        notify("success", "Log in successful");
-        Navigation(UrlRouter.APP_DASHBOARD, {replace: true});
+        API_SIGNIN(
+            loginCredentials,
+            (success: any) => {
+                notify("success", success.message);
+                Navigation(UrlRouter.APP_DASHBOARD, {replace: true});
+            },
+            (error: any) => {
+                console.log({ERROR_API_SIGNIN: error});
+                notify("error", error.message);
+            },
+        );
     };
 
     return (
@@ -40,6 +49,7 @@ const Login = () => {
                 />
 
                 <TextInput
+                    type="password"
                     id="password"
                     name="password"
                     onChange={handleChange}

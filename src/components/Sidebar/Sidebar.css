@@ -10,6 +10,10 @@
     @apply flex items-center gap-[20px] w-full py-[8px] px-[16px] box-border cursor-pointer duration-300;
 }
 
+.sidebar-logout {
+    @apply absolute bottom-[16px];
+}
+
 .sidebar-item-title {
     @apply text-[12px] text-[#121A24] font-medium
 }
