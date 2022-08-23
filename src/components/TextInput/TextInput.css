@@ -1,0 +1,11 @@
+.textinput-wrapper {
+    @apply flex flex-col gap-[5px];
+}
+
+.textinput-label {
+    @apply text-[12px] font-medium text-[#121A24];
+}
+
+.textinput-input {
+    @apply h-[32px] border-[1px] border-[#C8D1DC] focus:border-[2px] focus:border-[#1BEBB9] rounded-lg p-[10px] text-[12px] box-border outline-none text-[#121A24] duration-300;
+}

@@ -1,0 +1,7 @@
+.button {
+    @apply h-[32px] bg-[#1BEBB9] rounded-lg text-[12px] box-border outline-none duration-300;
+}
+
+.button-label {
+    @apply m-auto text-[#121A24] font-medium;
+}

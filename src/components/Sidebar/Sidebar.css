@@ -1,0 +1,15 @@
+.sidebar {
+    @apply flex flex-col duration-300 h-screen bg-[#EFF3F5] py-[16px] box-border fixed top-0 bottom-0 left-0 border-r-[1px] border-[#C8D1DC];
+}
+
+.sidebar-toggle {
+    @apply flex h-[25px] w-[25px] bg-[#1BEBB9] rounded-full absolute right-[-12.5px] top-[37.5px] cursor-pointer;
+}
+
+.sidebar-item {
+    @apply flex items-center gap-[20px] w-full py-[8px] px-[16px] box-border cursor-pointer duration-300;
+}
+
+.sidebar-item-title {
+    @apply text-[12px] text-[#121A24] font-medium
+}
