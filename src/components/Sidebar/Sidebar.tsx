@@ -1,16 +1,16 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SidebarItem from './SidebarItem';
 import "./Sidebar.css";
 import SidebarToggle from './SidebarToggle';
 import { UrlRouter } from '../../router';
 import { AiOutlineBarChart, AiOutlineDatabase, AiOutlineApi } from 'react-icons/ai';
-import { GrGroup, GrLogout } from 'react-icons/gr';
-import { cookiesClient } from '../../apis';
-import { useNavigate } from 'react-router-dom';
+import { GrGroup, GrUserAdmin, GrClose } from 'react-icons/gr';
+import { UnrevealMobileSidebar } from '../../redux/Sidebar/SidebarActions';
+import SidebarLogout from './SidebarLogout';
 
 const Sidebar = () => {
     const SidebarSelector = useSelector((state: any) => state.sidebar);
-    const Navigation = useNavigate();
+    const Dispatch = useDispatch();
 
     const sidebarItem = [
         {
@@ -33,11 +33,24 @@ const Sidebar = () => {
             redirectTo: UrlRouter.APP_MEET_UP,
             icon: <GrGroup />,
         },
+        {
+            text: "Administrator",
+            redirectTo: UrlRouter.APP_ADMINISTRATOR,
+            icon: <GrUserAdmin />,
+        },
     ];
 
     return (
-        <div className={`sidebar ${SidebarSelector.reveal ? "w-[200px]" : "w-[50px]"}`}>
+        <div 
+            className={`
+                absolute left-[-1000%] 
+                ${SidebarSelector.mobile ? "left-0" : ""}
+                sidebar 
+                ${SidebarSelector.reveal ? "w-[200px]" : "w-[50px]"}
+            `}
+        >
             <SidebarToggle />
+            <GrClose className="sidebar-close-mobile" onClick={() => Dispatch(UnrevealMobileSidebar())} />
 
             {sidebarItem.map((item: any, index: number) => {
                 return (
@@ -48,26 +61,10 @@ const Sidebar = () => {
                         title={item.text}
                         redirectTo={item.redirectTo}
                     />
-                )
+                );
             })}
 
-            <div
-                className={`
-                    sidebar-item 
-                    sidebar-logout
-                    ${!SidebarSelector.reveal && "justify-center"} 
-                `}
-                onClick={() => {
-                    cookiesClient().set('authToken', null, {
-                        path: '/',
-                        sameSite: 'lax'
-                    });
-                    Navigation(UrlRouter.AUTH_LOGIN)
-                }}
-            >
-                <GrLogout />
-                <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "hidden"}`}>Log out</p>
-            </div>
+            <SidebarLogout />
         </div>
     );
 };

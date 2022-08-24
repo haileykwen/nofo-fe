@@ -1,0 +1,15 @@
+.administrator-table-wrapper {
+    @apply flex w-full rounded-[4px] border-[1px] border-[#C8D1DC] overflow-hidden mt-[10px] overflow-x-auto;
+}
+
+.administrator-table {
+    @apply w-full;
+}
+
+.administrator-table tr.administrator-table-header td {
+    @apply px-[16px] py-[12px] text-[12px] font-medium border-b-[1px] border-[#C8D1DC] bg-[#EFF3F5];
+}
+
+.administrator-table tr td {
+    @apply px-[16px] py-[12px] text-[12px] border-b-[1px] border-[#C8D1DC];
+}

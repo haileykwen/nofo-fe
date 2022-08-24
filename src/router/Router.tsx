@@ -5,7 +5,7 @@ import {
     Outlet
 } from "react-router-dom";
 import { Sidebar } from "../components";
-import { APIs, Dashboard, DataSources, Login, MeetUp } from "../pages";
+import { Administrator, APIs, Dashboard, DataSources, Login, MeetUp } from "../pages";
 import { PublicRoute, UrlRouter, PrivateRoute } from "./";
 
 const Router = () => {
@@ -18,6 +18,7 @@ const Router = () => {
                     <Route path={UrlRouter.APP_DATA_SOURCES_RRD} element={<DataSources />} />
                     <Route path={UrlRouter.APP_APIS_RRD} element={<APIs />} />
                     <Route path={UrlRouter.APP_MEET_UP_RRD} element={<MeetUp />} />
+                    <Route path={UrlRouter.APP_ADMINISTRATOR} element={<Administrator />} />
                 </Route>
             </Route>
 
@@ -33,10 +34,11 @@ const Router = () => {
 
 const App = () => {
     const SidebarSelector = useSelector((state: any) => state.sidebar);
+
     return (
         <main className="flex">
             <Sidebar />
-            <div className={`flex w-full ${SidebarSelector.reveal ? "ml-[200px]" : "ml-[50px]"} duration-300`}>
+            <div className={`app flex flex-col w-full ${SidebarSelector.reveal ? "ml-[200px]" : "ml-[50px]"} duration-300`}>
                 <Outlet />
             </div>
         </main>

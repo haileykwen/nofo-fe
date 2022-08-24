@@ -5,11 +5,15 @@ const PageTitle = () => {
 
     return (
         <h1 className="text-[18px] text-[#121A24] font-medium">
+            {/* App */}
             {Location.pathname.includes("dashboard") && "Dashboard"}
             {Location.pathname.includes("data-sources") && "Data Sources"}
             {Location.pathname.includes("apis") && "APIs"}
             {Location.pathname.includes("web-builder") && "Web Builder"}
             {Location.pathname.includes("meet") && "Meet Up"}
+            {Location.pathname.includes("administrator") && "Administrator"}
+
+            {/* Auth */}
             {Location.pathname.includes("login") && "Log in"}
         </h1>
     );
