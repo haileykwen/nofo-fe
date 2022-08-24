@@ -4,7 +4,7 @@ import {
     Route,
     Outlet
 } from "react-router-dom";
-import { Sidebar } from "../components";
+import { Navbar, Sidebar } from "../components";
 import { Administrator, APIs, Dashboard, DataSources, Login, MeetUp } from "../pages";
 import { PublicRoute, UrlRouter, PrivateRoute } from "./";
 
@@ -39,6 +39,7 @@ const App = () => {
         <main className="flex">
             <Sidebar />
             <div className={`app flex flex-col w-full ${SidebarSelector.reveal ? "ml-[200px]" : "ml-[50px]"} duration-300`}>
+                <Navbar />
                 <Outlet />
             </div>
         </main>
