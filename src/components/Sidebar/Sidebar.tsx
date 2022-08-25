@@ -46,7 +46,7 @@ const Sidebar = () => {
                 absolute left-[-1000%] 
                 ${SidebarSelector.mobile ? "left-0" : ""}
                 sidebar 
-                ${SidebarSelector.reveal ? "w-[200px]" : "w-[50px]"}
+                ${SidebarSelector.reveal ? "w-[200px]" : "w-[200px] sm:w-[50px]"}
             `}
         >
             <SidebarToggle />

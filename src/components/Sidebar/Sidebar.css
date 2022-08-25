@@ -7,7 +7,7 @@
 }
 
 .sidebar-close-mobile {
-    @apply absolute right-[10px] top-[10px];
+    @apply sm:hidden absolute right-[10px] top-[10px];
 }
 
 .sidebar-item {

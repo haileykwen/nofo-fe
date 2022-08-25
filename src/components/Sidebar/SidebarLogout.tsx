@@ -13,7 +13,7 @@ const SidebarLogout = () => {
             className={`
                     sidebar-item 
                     sidebar-logout
-                    ${!SidebarSelector.reveal && "justify-center"} 
+                    ${!SidebarSelector.reveal && "sm:justify-center"} 
                 `}
             onClick={() => {
                 cookiesClient().set('authToken', null, {
@@ -24,7 +24,7 @@ const SidebarLogout = () => {
             }}
         >
             <GrLogout />
-            <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "hidden"}`}>Log out</p>
+            <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "sm:hidden"}`}>Log out</p>
         </div>
     );
 };

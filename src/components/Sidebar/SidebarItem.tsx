@@ -18,14 +18,14 @@ const SidebarItem = (props: SidebarItemProps) => {
             key={props.indexOf}
             className={`
                 sidebar-item 
-                ${!SidebarSelector.reveal && "justify-center"} 
+                ${!SidebarSelector.reveal && "sm:justify-center"} 
                 ${Location.pathname === props.redirectTo && "bg-[#1BEBB9]"}
                 ${props.indexOf === 0 && "mt-[84px]"}
             `}
             onClick={() => Navigation(props.redirectTo)}
         >
             {props.icon}
-            <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "hidden"}`}>{props.title}</p>
+            <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "sm:hidden"}`}>{props.title}</p>
         </div>
     );
 };
