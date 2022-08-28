@@ -1,13 +1,14 @@
 import "./TextInput.css";
 
 interface TextInputProps {
-    type?: "text" | "password"
+    type?: "text" | "password" | "email"
     id: string
     name: string
     required?: boolean
     className?: string
     onChange: any
     label?: string
+    value?: any
 };
 
 const TextInput = (props: TextInputProps) => {
@@ -21,6 +22,7 @@ const TextInput = (props: TextInputProps) => {
                 required={props.required ? props.required : false}
                 className="textinput-input"
                 onChange={props.onChange}
+                value={props.value}
             />
         </div>
     );

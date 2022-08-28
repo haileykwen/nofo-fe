@@ -1,0 +1,12 @@
+.modal {
+    width: clamp(50%, 700px, 90%);
+    height: max-content;
+
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    padding: 20px;
+}

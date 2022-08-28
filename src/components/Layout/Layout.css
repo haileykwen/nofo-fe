@@ -1,5 +1,5 @@
 .layout {
-    @apply flex flex-col container mx-auto bg-white p-[20px] sm:p-[100px];
+    @apply flex flex-col container mx-auto bg-white p-[20px] md:p-[100px];
 }
 
 .layout {

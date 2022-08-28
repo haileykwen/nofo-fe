@@ -13,14 +13,6 @@ const Login = () => {
     });
     const Navigation = useNavigate();
 
-    const handleChange = (event: any) => {
-        const key: string = event.target.name;
-        const value: string = event.target.value;
-        let tempLoginCredentials: any = loginCredentials;
-        tempLoginCredentials[key] = value;
-        setLoginCredentials(tempLoginCredentials);
-    };
-
     const handleSubmit = (event: any) => {
         event.preventDefault();
         API_SIGNIN(
@@ -44,19 +36,21 @@ const Login = () => {
                 <TextInput
                     id="email"
                     name="email"
-                    onChange={handleChange}
+                    onChange={(event: any) => setLoginCredentials({...loginCredentials, email: event.target.value})}
                     label="Email Address"
+                    value={loginCredentials.email}
                 />
 
                 <TextInput
                     type="password"
                     id="password"
                     name="password"
-                    onChange={handleChange}
+                    onChange={(event: any) => setLoginCredentials({...loginCredentials, password: event.target.value})}
                     label="Password"
+                    value={loginCredentials.password}
                 />
 
-                <Button label="Log in" onClick={handleSubmit} />
+                <Button label="Log in" onClick={handleSubmit} full />
             </form>
         </Layout>
     );

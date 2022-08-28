@@ -4,6 +4,8 @@ import Layout from "./Layout/Layout";
 import TextInput from "./TextInput/TextInput";
 import Button from "./Button/Button";
 import Navbar from "./Navbar/Navbar";
+import Backdrop from "./Backdrop/Backdrop";
+import Modal from "./Modal/Modal";
 
 export {
     Sidebar,
@@ -11,5 +13,7 @@ export {
     Layout,
     TextInput,
     Button,
-    Navbar
+    Navbar,
+    Backdrop,
+    Modal,
 };

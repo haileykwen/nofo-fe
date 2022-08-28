@@ -1,5 +1,5 @@
 import { notify } from "../App";
-import { http, ApiUrl, cookiesClient } from "./";
+import { http, ApiUrl, cookiesClient } from ".";
 
 export const API_SIGNIN = (data: any, callbackSuccess: any, callbackError: any) => {
     notify("loading", "Logging in");

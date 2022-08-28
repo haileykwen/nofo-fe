@@ -1,5 +1,5 @@
 .button {
-    @apply h-[32px] bg-[#1BEBB9] rounded-lg text-[12px] box-border outline-none duration-300;
+    @apply h-[32px] bg-[#1BEBB9] rounded-lg text-[12px] box-border outline-none duration-300 py-1 px-4;
 }
 
 .button-label {
