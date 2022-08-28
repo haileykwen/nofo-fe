@@ -46,7 +46,7 @@ const Administrator = () => {
     const handleResetInvitationData = () => {
         let tempInvitationData = invitationData;
         Object.keys(invitationData).map((key: any) => {
-            tempInvitationData[key] = "";
+            return tempInvitationData[key] = "";
         });
     };
 
