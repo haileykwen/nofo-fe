@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_ACCEPT_INVITATION } from "../../apis/administrator";
 import { notify } from "../../App";
