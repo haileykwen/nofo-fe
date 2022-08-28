@@ -7,6 +7,7 @@ import Administrator from "./Administrator/Administrator";
 
 // Auth
 import Login from "./Login/Login";
+import AcceptInvitation from "./AcceptInvitation/AcceptInvitation";
 
 export {
     // App
@@ -18,4 +19,5 @@ export {
 
     // Auth
     Login,
+    AcceptInvitation,
 };

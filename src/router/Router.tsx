@@ -5,7 +5,7 @@ import {
     Outlet
 } from "react-router-dom";
 import { Navbar, Sidebar } from "../components";
-import { Administrator, APIs, Dashboard, DataSources, Login, MeetUp } from "../pages";
+import { AcceptInvitation, Administrator, APIs, Dashboard, DataSources, Login, MeetUp } from "../pages";
 import { PublicRoute, UrlRouter, PrivateRoute } from "./";
 
 const Router = () => {
@@ -26,6 +26,7 @@ const Router = () => {
             <Route path="/auth" element={<PublicRoute />}>
                 <Route path={UrlRouter.AUTH} element={<Auth />}>
                     <Route path={UrlRouter.AUTH_LOGIN} element={<Login />} />
+                    <Route path={UrlRouter.AUTH_ACCEPT_INVITATION} element={<AcceptInvitation />} />
                 </Route>
             </Route>
         </Routes>

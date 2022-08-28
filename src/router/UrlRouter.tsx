@@ -14,6 +14,7 @@ const UrlRouter = {
     AUTH: "/auth",
     AUTH_LOGIN: "/auth/login",
     AUTH_LOGIN_RRD: "login",
+    AUTH_ACCEPT_INVITATION: "/auth/accept-invitation",
 };
 
 export default UrlRouter;
