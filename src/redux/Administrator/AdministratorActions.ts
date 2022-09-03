@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { API_GET_ADMINS } from "../../apis/administrator";
 import {
     GET_ADMINS,
@@ -5,31 +6,29 @@ import {
     STOP_LOADING,
 } from "./AdministratorTypes";
 
-export const StartLoading = () => {
-    return {
-        type: START_LOADING,
-    };
-};
+export const GetAdmins = () => {
+    return async (dispatch: Dispatch<any>) => {
+        dispatch({
+            type: START_LOADING,
+        });
 
-export const StopLoading = () => {
-    return {
-        type: STOP_LOADING,
-    };
-};
+        let admins: any;
+        await API_GET_ADMINS(
+            null,
+            (resp: any) => {
+                admins = resp;
+            },
+            (error: any) => {
+                admins = error;
+            }
+        );
+        dispatch({
+            type: GET_ADMINS,
+            payload: admins.data
+        });
 
-export const GetAdmins = async () => {
-    let admins: any;
-    await API_GET_ADMINS(
-        null,
-        (resp: any) => {
-            admins = resp;
-        },
-        (error: any) => {
-            admins = error;
-        }
-    );
-    return {
-        type: GET_ADMINS,
-        payload: admins.data
-    };
+        dispatch({
+            type: STOP_LOADING,
+        });
+    }
 }

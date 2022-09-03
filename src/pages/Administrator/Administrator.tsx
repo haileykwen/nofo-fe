@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { API_SEND_INVITATION } from '../../apis';
 import { notify } from '../../App';
 import { Button, Layout, Modal, PageTitle, TextInput } from '../../components';
-import { GetAdmins, StartLoading, StopLoading } from '../../redux/Administrator/AdministratorActions';
+import { AdministratorCreators } from '../../redux';
 import "./Administrator.css";
+import Skeleton from 'react-loading-skeleton';
 
 const Administrator = () => {
     const Dispatch = useDispatch();
+    const { GetAdmins } = bindActionCreators(AdministratorCreators, Dispatch);
+    const AdministratorSelector = useSelector((state: any) => state.administrator);
 
     const tableConfig = [
         {
@@ -29,16 +33,15 @@ const Administrator = () => {
         email: "",
         role: "",
     });
-    const AdministratorSelector = useSelector((state: any) => state.administrator);
 
-    const handleResetInvitationData = () => {
+    function handleResetInvitationData() {
         let tempInvitationData = invitationData;
         Object.keys(invitationData).map((key: any) => {
             return tempInvitationData[key] = "";
         });
     };
 
-    const handleSubmitInvitation = (event: any) => {
+    function handleSubmitInvitation(event: any) {
         event.preventDefault();
         API_SEND_INVITATION(
             invitationData,
@@ -56,25 +59,28 @@ const Administrator = () => {
         );
     };
 
-    useEffect(() => {
-        handleGetAdmins();
-    }, []);
-
-    async function handleGetAdmins() {
-        Dispatch(StartLoading());
-        Dispatch(await GetAdmins());
-        Dispatch(StopLoading());
+    function handleGetAdmins() {
+        GetAdmins();
     };
+
+    useEffect(() => {
+        !Array.isArray(AdministratorSelector.admins) && handleGetAdmins();
+    }, []);
 
     return (
         <Layout>
             <PageTitle />
 
-            <Button
-                label="Create Invitation"
-                onClick={() => setModalInvitation(true)}
-                className="mt-5"
-            />
+            <div className='flex gap-1 mt-5'>
+                <Button
+                    label="Create Invitation"
+                    onClick={() => setModalInvitation(true)}
+                />
+                <Button
+                    label="Refresh"
+                    onClick={handleGetAdmins}
+                />
+            </div>
 
             <section className='administrator-table-wrapper'>
                 <table className="administrator-table">
@@ -91,7 +97,7 @@ const Administrator = () => {
 
                     {/* Table Data */}
                     <tbody>
-                        {Array.isArray(AdministratorSelector.admins) && AdministratorSelector.admins.map((admin: any, indexAdmin: number) => {
+                        {!AdministratorSelector.loading && Array.isArray(AdministratorSelector.admins) && AdministratorSelector.admins.map((admin: any, indexAdmin: number) => {
                             return (
                                 <tr key={indexAdmin}>
                                     {tableConfig.map((config: any, index: number) => {
@@ -102,6 +108,14 @@ const Administrator = () => {
                                 </tr>
                             );
                         })}
+
+                        {AdministratorSelector.loading && 
+                            <tr>
+                                <td><Skeleton /></td>
+                                <td><Skeleton /></td>
+                                <td><Skeleton /></td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </section>
