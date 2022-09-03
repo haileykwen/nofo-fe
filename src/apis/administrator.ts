@@ -26,3 +26,15 @@ export const API_ACCEPT_INVITATION = (data: any, callbackSuccess: any, callbackE
         };
     });
 };
+
+export const API_GET_ADMINS = async (data: any, callbackSuccess: any, callbackError: any) => {
+    await http(true).get(`${ApiUrl.ADMINISTRATOR_GET_ADMINS}`, data).then((resp: any) => {
+        if (resp?.error === false) {
+            notify("remove", "");
+            callbackSuccess && callbackSuccess(resp);
+        } else {
+            notify("remove", "");
+            callbackError && callbackError(resp);
+        };
+    });
+};

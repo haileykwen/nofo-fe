@@ -1,27 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_SEND_INVITATION } from '../../apis';
 import { notify } from '../../App';
 import { Button, Layout, Modal, PageTitle, TextInput } from '../../components';
+import { GetAdmins, StartLoading, StopLoading } from '../../redux/Administrator/AdministratorActions';
 import "./Administrator.css";
 
 const Administrator = () => {
-    const dummyAdmins = [
-        {
-            id: 1,
-            email: "superadmin@nofo.com",
-            role: "superadmin"
-        },
-        {
-            id: 1,
-            email: "rohmanutinsa@nofo.com",
-            role: "admin"
-        },
-        {
-            id: 1,
-            email: "mia@nofo.com",
-            role: "admin"
-        },
-    ];
+    const Dispatch = useDispatch();
+
     const tableConfig = [
         {
             tableHeader: "No",
@@ -42,6 +29,7 @@ const Administrator = () => {
         email: "",
         role: "",
     });
+    const AdministratorSelector = useSelector((state: any) => state.administrator);
 
     const handleResetInvitationData = () => {
         let tempInvitationData = invitationData;
@@ -66,6 +54,16 @@ const Administrator = () => {
                 setModalInvitation(false);
             },
         );
+    };
+
+    useEffect(() => {
+        handleGetAdmins();
+    }, []);
+
+    async function handleGetAdmins() {
+        Dispatch(StartLoading());
+        Dispatch(await GetAdmins());
+        Dispatch(StopLoading());
     };
 
     return (
@@ -93,7 +91,7 @@ const Administrator = () => {
 
                     {/* Table Data */}
                     <tbody>
-                        {dummyAdmins.map((admin: any, indexAdmin: number) => {
+                        {Array.isArray(AdministratorSelector.admins) && AdministratorSelector.admins.map((admin: any, indexAdmin: number) => {
                             return (
                                 <tr key={indexAdmin}>
                                     {tableConfig.map((config: any, index: number) => {
