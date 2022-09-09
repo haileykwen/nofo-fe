@@ -1,3 +1,4 @@
+import { Flex, Icon, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -14,19 +15,38 @@ const SidebarItem = (props: SidebarItemProps) => {
     const SidebarSelector = useSelector((state: any) => state.sidebar);
 
     return (
-        <div
+        <Flex
+            alignItems="flex-start"
             key={props.indexOf}
-            className={`
-                sidebar-item 
-                ${!SidebarSelector.reveal && "sm:justify-center"} 
-                ${Location.pathname === props.redirectTo && "bg-[#1BEBB9]"}
-                ${props.indexOf === 0 && "mt-[84px]"}
-            `}
+            bg={Location.pathname === props.redirectTo ? "primary" : "inherit"}
+            mt={props.indexOf === 0 ? "60px" : "0px"}
             onClick={() => Navigation(props.redirectTo)}
+            justifyContent={!SidebarSelector.reveal ? "center" : "flex-start"}
+            gap="10px"
+            w="full"
+            p="8px 16px"
+            cursor="pointer"
         >
-            {props.icon}
-            <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "sm:hidden"}`}>{props.title}</p>
-        </div>
+            <Flex gap="10px" alignItems="center">
+                <Icon 
+                    as={props.icon} 
+                    color={Location.pathname === props.redirectTo ? "border" : "fontColorPrimary"}
+                    fontSize="fs-lg" 
+                />
+                <Text
+                    color={Location.pathname === props.redirectTo ? "border" : "fontColorPrimary"}
+                    display={
+                        SidebarSelector.reveal 
+                            ?   "block" 
+                            :   SidebarSelector.mobile
+                                ?   "block"
+                                :   "none"
+                    }
+                >   
+                    {props.title}
+                </Text>
+            </Flex>
+        </Flex>
     );
 };
 

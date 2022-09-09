@@ -1,5 +1,5 @@
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Flex, Icon } from "@chakra-ui/react";
+import { TbChevronLeft } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { RevealSidebar, UnrevealSidebar } from "../../redux/Sidebar/SidebarActions";
 
@@ -8,19 +8,30 @@ const SidebarToggle = () => {
     const SidebarSelector = useSelector((state: any) => state.sidebar);
 
     return (
-        <div 
-            className='sidebar-toggle'
+        <Flex
             onClick={() => {
                 SidebarSelector.reveal ? Dispatch(UnrevealSidebar()) : Dispatch(RevealSidebar());
             }}
+            bg="primary"
+            display={{ base: "none", lg: "flex" }}
+            justifyContent="center"
+            alignItems="center"
+            h="25px"
+            w="25px"
+            borderRadius="full"
+            cursor="pointer"
+            position="absolute"
+            right="-12.5px"
+            top="37.5px"
         >
-            <FontAwesomeIcon
-                size='xs' 
-                icon={faChevronLeft} 
-                color="#121A24" 
-                className={`m-auto ${SidebarSelector.reveal ? "" : "rotate-180"} duration-500`} 
+            <Icon
+                as={TbChevronLeft}
+                fontSize="fs-lg"
+                color="border"
+                margin="auto"
+                className={`${SidebarSelector.reveal ? "" : "rotate-180"} duration-500`}
             />
-        </div>
+        </Flex>
     );
 };
 

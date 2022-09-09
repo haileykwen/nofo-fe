@@ -6,10 +6,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins';
 }
 
-@media screen and (max-width: 640px) {
-  .app {
-      margin: 0;
-  }
+:root {
+  --color-primary: #3AAFA9;
+  --color-secondary: #2B7A77;
+}
+
+::-webkit-scrollbar {
+  width: .4rem;
+  height: .4rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #afafaf;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }

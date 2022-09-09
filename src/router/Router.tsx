@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import {
     Routes,
@@ -37,13 +38,18 @@ const App = () => {
     const SidebarSelector = useSelector((state: any) => state.sidebar);
 
     return (
-        <main className="flex">
+        <Flex>
             <Sidebar />
-            <div className={`app flex flex-col w-full ${SidebarSelector.reveal ? "ml-[200px]" : "ml-[50px]"} duration-300`}>
+            <Flex 
+                direction="column"
+                w="100vw"
+                className={`duration-300`}
+                marginLeft={{ base: "0px", lg: SidebarSelector.reveal ? "200px" : "50px" }}
+            >
                 <Navbar />
                 <Outlet />
-            </div>
-        </main>
+            </Flex>
+        </Flex>
     );
 };
 

@@ -1,4 +1,5 @@
-import { GrLogout } from "react-icons/gr";
+import { Flex, Icon, Text } from "@chakra-ui/react";
+import { TbLogout } from "react-icons/tb";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { cookiesClient } from "../../apis";
@@ -9,12 +10,9 @@ const SidebarLogout = () => {
     const Navigation = useNavigate();
 
     return (
-        <div
-            className={`
-                    sidebar-item 
-                    sidebar-logout
-                    ${!SidebarSelector.reveal && "sm:justify-center"} 
-                `}
+        <Flex
+            position="absolute"
+            bottom="16px"
             onClick={() => {
                 cookiesClient().set('authToken', null, {
                     path: '/',
@@ -22,10 +20,26 @@ const SidebarLogout = () => {
                 });
                 Navigation(UrlRouter.AUTH_LOGIN)
             }}
+            justifyContent={!SidebarSelector.reveal ? "center" : "flex-start"}
+            gap="10px"
+            w="full"
+            p="8px 16px"
+            cursor="pointer"
+            alignItems="center"
         >
-            <GrLogout />
-            <p className={`sidebar-item-title ${SidebarSelector.reveal ? "block" : "sm:hidden"}`}>Log out</p>
-        </div>
+            <Icon as={TbLogout} color="fontColorPrimary" fontSize="fs-lg" />
+            <Text
+                display={
+                    SidebarSelector.reveal 
+                        ?   "block" 
+                        :   SidebarSelector.mobile
+                            ?   "block"
+                            :   "none"
+                }
+            >   
+                Logout
+            </Text>
+        </Flex>
     );
 };
 
